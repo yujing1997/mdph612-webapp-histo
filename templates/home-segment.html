@@ -1,0 +1,70 @@
+<h1>Home Page: Let's analyze the histopathological images! <h1>
+
+    <!--    <div class="row">
+            <div class="column">
+              <img src="\static\p1\A21.tif" alt="Snow" style="width:30%">
+            </div>
+            <div class="column">
+              <img src="\static\p1\histogram1.png" alt="Forest" style="width:30%">
+            </div>
+            <div class="column">
+              <img src="\static\p1\A21-annotation.png" alt="Mountains" style="width:30%">
+            </div>
+            
+          </div> -->
+    
+          <!DOCTYPE html>
+          <html>
+          <head>
+          <style>
+              body {
+                  font-family: Arial;
+                  color:midnightblue;
+                  background-color:rgb(199, 202, 191);
+              }
+              
+              .form1 {
+                  
+                  float:left; 
+                  vertical-align: middle;
+                  transform: translate(120%,0);
+              }
+          
+              button {
+                  font-size:large
+              }
+          
+              input {
+                  height: 20px;
+                  width: 20px;
+              }
+          
+              .centered {
+                  position: absolute;
+                  vertical-align: middle;
+                  text-align: center;
+              }
+          </style>
+          </head>
+    
+          <!-- Logout Button -->
+    <form method="get">
+        <button name="BacktoOriginalImage" formaction="/home" type="submit" style="font-size:large">Back to original histopathological image</button>
+    </form>
+    
+    <div class="centered">
+        <h3>You're looking at {{p_name}}'s segmented histopathological images!</h3>
+    
+        <!-- Insert Image -->
+        <body>
+            <img src="{{ user_image }}" alt="user_image" style="width:60%">
+            <!--investigate how to move the image to the center of the screen-->
+        </body>
+    
+    
+    <form method="get">
+        <br>
+        <button name="Next" formaction="/home-cellinfo" type="submit">Analyze nuclei size distribution!</button>
+    </form> 
+    </div>
+    

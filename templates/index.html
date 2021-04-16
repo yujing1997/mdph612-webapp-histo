@@ -1,0 +1,27 @@
+<html>
+<head>
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+</head>
+<body>
+<button id = "previous"> PREVIOUS </button>
+<button id = "next"> NEXT </button>
+<div>
+<img id="patient_image" style="width:512px;height:512px;border: 1px solid
+#ddd;">
+</div>
+<script type='text/javascript'>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        $(document).ready(function() {
+            $.getJSON($SCRIPT_ROOT + '/_images_list', {
+                }, function(data) {
+                    image_list = data.image_list
+                    image_urls = data.image_urls
+                    // console.log(patient_file)
+                    document.getElementById('patient_image').src = image_urls[0]
+                });
+        })
+    </script>
+</body>
+</html>

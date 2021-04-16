@@ -1,0 +1,68 @@
+<html>
+
+<!--<link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='css/login2.css')}}"-->
+<!--<link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='css/stafflogin.css')}}"-->
+
+  
+  <head>
+    <title>Staff Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='css/stafflogin.css')}}"-->
+    <style>
+      body{
+        background-image:url(..static/images/logos/muhclogo.png);
+        background-size: cover;
+        background-attachment:fixed;
+      }
+      .content{
+        max-width: 500px;
+        margin:auto;
+        background: white;
+        width: 50%;
+        padding: 40px;
+        margin:100px auto;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <style>
+      body{background-color: rgb(245, 244, 195)}
+    </style>
+     <div class="container">
+      <h1 style="color:rgb(255, 123, 0); text-align:center; font-family:Verdana, Geneva, Tahoma, sans-serif; font-size:200%;border:2px solid Violet;"> Welcome to McGill University! <br/> Staff Login: </h1>
+      <br>
+      <form style="text-align:center" action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+    <!--<div style="background-image: url(\\static\\images\\logos\\muhclogo.png);">
+      <h1>hello</h1>>
+    </div> -->
+    <div>
+      <body>
+
+        <br><br><br><br><br><br>
+        <img src="static/images/logos/muhclogo.png" width="100" height="100" alt = "muhclogo" class=center>
+        <img src="static/images/logos/JGHlogo.png" width="100" height="100" alt = "jghlogo" class=center>
+        <img src="static/images/logos/McGill logo.png" width="100" height="100" alt = "mcgilllogo" class=center>
+
+        <h2>
+          For any questions about this web app, <br>please email <b>Yujing Zou </b> at <i>yujing.zou@mail.mcgill.ca</i>
+          <br><br>Thank you very much!
+        </h2>
+
+
+      </body>
+      
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='css/login2.css')}}"
+
+<image src="{{ url_for('static',filename='images/logos/McGill logo.png')}}">
+
+
+<div class="login">
+  <div class="login-header">
+    <h1>Welcome! <br/ > Select a patient: </h1>
+      <h2> This is a web application that allows a staff member to view the segmented histopathological images
+        <br/> of a patient from which cell nuclei size information have been extracted. <h2>
+  </div>
+  <div class="login-form">
+    <!-- Username Box -->
+    <h3>Username:</h3>
+    <!--<input type="text" placeholder="Username"/><br> -->
+    <input type="text"  class="input" placeholder="Name" name="username" value="{{
+      request.form.username }}" class="form-control input-lg">
+      <br>
+    <!-- Password Box -->
+    <h3>Password:</h3>
+    <!--<input type="password" placeholder="Password"/>
+    <br>-->
+    <input type="password" placeholder="Password" name="password" value="{{
+      request.form.password }}"class="form-control input-lg">
+      <br>
+
+    <!-- Login Button -->
+    <!--<input type="button" value="Login" class="login-button"/>
+    <br>-->
+    <input class="btn btn-default" type="submit" value="Login" style="background-color:lightcyan"> 
+
+    
+  </form>
+
+    <a class="sign-up">Sign Up!</a>
+    <br>
+    <h6 class="no-access">Can't access your account?</h6>
+  </div>
+</div>
+<div class="error-page">
+  <div class="try-again">Error: Try again?</div>
+</div>
+
+</html>
