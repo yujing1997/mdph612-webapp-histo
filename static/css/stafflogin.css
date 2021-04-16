@@ -1,0 +1,9 @@
+
+.box{
+    background-image:url(../images/logos/muhclogo.png);
+    padding: 800px 100px;
+    margin: 100px;
+
+    background-size: cover;
+    background-position: center;
+}
