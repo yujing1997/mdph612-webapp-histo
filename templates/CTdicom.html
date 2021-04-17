@@ -1,0 +1,74 @@
+<h1>Home Page: Let's analyze the a slice of CT dicom!</h1> 
+    <h2>Apply a UNet deep learning algorithm to it, find its contoured GTV mask, and compare it with the predicted GTV binary mask! </h2>
+    <h4>Note: This UNet was only trained on 550 images and validated on 50 images</h4>
+
+
+    <!--    <div class="row">
+            <div class="column">
+              <img src="\static\p1\A21.tif" alt="Snow" style="width:30%">
+            </div>
+            <div class="column">
+              <img src="\static\p1\histogram1.png" alt="Forest" style="width:30%">
+            </div>
+            <div class="column">
+              <img src="\static\p1\A21-annotation.png" alt="Mountains" style="width:30%">
+            </div>
+            
+          </div> -->
+    
+          <!DOCTYPE html>
+          <html>
+          <head>
+          <style>
+              body {
+                  font-family: Arial;
+                  color:midnightblue;
+                  background-color:rgb(199, 202, 191);
+              }
+              
+              .form1 {
+                  
+                  float:left; 
+                  vertical-align: middle;
+                  transform: translate(120%,0);
+              }
+          
+              button {
+                  font-size:large
+              }
+          
+              input {
+                  height: 20px;
+                  width: 20px;
+              }
+          
+              .centered {
+                  position: absolute;
+                  vertical-align: middle;
+                  text-align: center;
+              }
+          </style>
+          </head>
+    
+          <!-- Logout Button -->
+    <form method="get">
+        <button name="Backtocellinfo" formaction="/home-cellinfo" type="submit" style="font-size:large">Back to nuclei radius distribution</button>
+    </form>
+    
+    <div class="centered">
+        <h1>You're looking at one of {{p_name}}'s CT slices!</h1>
+    
+        <!-- Insert Image -->
+        <body>
+            <img src="{{ user_image }}" alt="user_image" style="width:60%">
+            <!--investigate how to move the image to the center of the screen-->
+        </body>
+    
+    
+    <form method="get">
+        <br>
+        <button name="Next" formaction="/GT_GTVmask" type="submit">Woah! Let's look at its Ground Truth GTV mask <br> and run this slice through a <br> UNet segmentation 
+            deep learning algorithm!</button>
+    </form> 
+    </div>
+    
