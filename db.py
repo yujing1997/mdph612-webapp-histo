@@ -11,7 +11,7 @@ import psycopg2
 import os
 import pandas as pd
 
-DATABASE = "mdph612yz"
+DATABASE = "mdph612yz2"
 USER = "postgres"
 PASSWORD = "amilucy.2152ami"
 HOST = "127.0.0.1"
@@ -40,7 +40,7 @@ def create_patient_database(cur):
           PASSWORD      TEXT     NOT NULL);''')
     
 
-# Create image database containing image name and path
+# Create  image database containing image name and path
 def create_image_database(cur):
     cur.execute("DROP TABLE IF EXISTS IMAGE CASCADE")
     cur.execute('''CREATE TABLE IMAGE (
@@ -63,7 +63,8 @@ def create_patientimage_database(cur):
                     ON UPDATE CASCADE ON DELETE CASCADE
             )
         ''')
-    
+
+
     
 ################ INSERT DATABASES ################
 
@@ -84,31 +85,58 @@ def insert_to_database(cur):
             [1, 'originalhisto','p1\A21.png'],
             [2, 'segmentation','p1\A21-annotation.png'],
             [3, 'histogram', 'p1\histogram1.png'],
-            [4, 'originalhisto','p2\A42.png'],
-            [5, 'segmentation','p2\A42-annotation.png'],
-            [6, 'histogram', 'p2\histogram1.png'],
-            [7, 'originalhisto','p3\A51.png'],
-            [8, 'segmentation','p3\A51-annotation.png'],
-            [9, 'histogram', 'p3\histogram1.png'],
-            [10, 'originalhisto','p4\A52.png'],
-            [11, 'segmentation','p4\A52-annotation.png'],
-            [12, 'histogram', 'p4\histogram1.png'],
+            [4,'dicomslice','p1\dicom_png_test_001.png'],
+            [5,'GTmask','p1\mask_png_test_001.png'],
+            [6,'PREDmask','p1\pred_mask_test_001.png'],
+            [7, 'originalhisto','p2\A42.png'],
+            [8, 'segmentation','p2\A42-annotation.png'],
+            [9, 'histogram', 'p2\histogram1.png'],
+            [10,'dicomslice','p2\dicom_png_test_002.png'],
+            [11,'GTmask','p2\mask_png_test_002.png'],
+            [12,'PREDmask','p2\pred_mask_test_002.png'],
+            [13, 'originalhisto','p3\A51.png'],
+            [14, 'segmentation','p3\A51-annotation.png'],
+            [15, 'histogram', 'p3\histogram1.png'],
+            [16,'dicomslice','p3\dicom_png_test_003.png'],
+            [17,'GTmask','p3\mask_png_test_003.png'],
+            [18,'PREDmask','p3\pred_mask_test_003.png'],
+            [19, 'originalhisto','p4\A52.png'],
+            [20, 'segmentation','p4\A52-annotation.png'],
+            [21, 'histogram', 'p4\histogram1.png'],
+            [22,'dicomslice','p4\dicom_png_test_004.png'],
+            [23,'GTmask','p4\mask_png_test_004.png'],
+            [24,'PREDmask','p4\pred_mask_test_004.png'],
         ]
     
-    # Patient-Image link
+    # Patient-Image link: the first 3 images for each patient are histology-related, the latter 3 are dicom-related
     patient_image = [
             [1,1],
             [1,2],
             [1,3],
-            [2,4],
-            [2,5],
-            [2,6],
-            [3,7],
-            [3,8],
-            [3,9],
-            [4,10],
-            [4,11],
-            [4,12]
+            [1,4],
+            [1,5],
+            [1,6],
+            
+            [2,7],
+            [2,8],
+            [2,9],
+            [2,10],
+            [2,11],
+            [2,12],
+            
+            [3,13],
+            [3,14],
+            [3,15],
+            [3,16],
+            [3,17],
+            [3,18],
+            
+            [4,19],
+            [4,20],
+            [4,21],
+            [4,22],
+            [4,23],
+            [4,24],
         ]
 ############ inserting data into created table ##########
     try:

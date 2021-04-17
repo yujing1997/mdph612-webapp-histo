@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 creating a web application, main code
-
 @author: Yujing Zou 
 """
 from flask import Flask, render_template, session
@@ -21,7 +20,7 @@ import pathlib
 parentDir = str(pathlib.Path().absolute())
 
 # PQSL Database Information
-DATABASE = "mdph612yz"
+DATABASE = "mdph612yz2"
 USER = "postgres"
 PASSWORD = "amilucy.2152ami"
 HOST = "127.0.0.1"
@@ -271,6 +270,147 @@ def load_cellinfo():
 
     return render_template('home-segment.html',error = error)
 
+@app.route('/CTdicom',  methods=['GET', 'POST'])
+def load_dicom():
+    error = None
+
+    # get current user's patientID and name
+    p_id = session.get('p_id', None)
+    print(p_id)
+    p_name = session.get('p_name', None)
+    print(p_name)
+    
+    # get the three images linked to patient in current session from database
+    if p_id != "":
+        query_img = """SELECT IMAGE.IMAGEID, IMAGE.NAME, IMAGE.FULLPATH FROM IMAGE 
+            INNER JOIN PATIENT_IMAGE ON IMAGE.IMAGEID=PATIENT_IMAGE.IMAGEID 
+            WHERE PATIENT_IMAGE.PATIENTID=%s"""%(p_id)
+        # query_dicom
+        
+        conn = psycopg2.connect(database=DATABASE, user=USER, password=PASSWORD,host=HOST,port=PORT)
+        cur = conn.cursor()
+        cur.execute(query_img)
+        results_img = cur.fetchall()
+        
+        
+    else:
+        results_img = []
+    
+    print(results_img); print(str(results_img[0][2])); print(str(results_img[1][2])); print(str(results_img[2][2]))
+    print(str(results_img[3][2]))
+    # specify filename
+    
+    # ori_filename = '\\static\\'+ str(results_img[0][2]) # showing the original histopathological image
+    # seg_filename = '\\static\\'+ str(results_img[1][2]) # segmented histopathological image
+    # histogram_filename = '\\static\\'+ str(results_img[2][2]) # nuclei size distibution histogram 
+    dicom = '\\static\\'+ str(results_img[3][2]) # show a CT Dicom slice
+    print(dicom)
+
+    return render_template("CTdicom.html", user_image = dicom
+                           ,row_img = results_img
+                           ,p_id = p_id
+                           ,p_name = p_name
+                           )
+
+    return render_template('CTdicom.html',error = error)
+
+@app.route('/GT_GTVmask',  methods=['GET', 'POST'])
+def load_GT_GTVmask():
+    error = None
+
+    # get current user's patientID and name
+    p_id = session.get('p_id', None)
+    print(p_id)
+    p_name = session.get('p_name', None)
+    print(p_name)
+    
+    # get the three images linked to patient in current session from database
+    if p_id != "":
+        query_img = """SELECT IMAGE.IMAGEID, IMAGE.NAME, IMAGE.FULLPATH FROM IMAGE 
+            INNER JOIN PATIENT_IMAGE ON IMAGE.IMAGEID=PATIENT_IMAGE.IMAGEID 
+            WHERE PATIENT_IMAGE.PATIENTID=%s"""%(p_id)
+        # query_dicom
+        
+        conn = psycopg2.connect(database=DATABASE, user=USER, password=PASSWORD,host=HOST,port=PORT)
+        cur = conn.cursor()
+        cur.execute(query_img)
+        results_img = cur.fetchall()
+        
+        
+    else:
+        results_img = []
+    
+    print(results_img); print(str(results_img[0][2])); print(str(results_img[1][2])); print(str(results_img[2][2]))
+    print(str(results_img[3][2])); print(str(results_img[4][2]))
+    # specify filename
+    
+    # ori_filename = '\\static\\'+ str(results_img[0][2]) # showing the original histopathological image
+    # seg_filename = '\\static\\'+ str(results_img[1][2]) # segmented histopathological image
+    # histogram_filename = '\\static\\'+ str(results_img[2][2]) # nuclei size distibution histogram 
+    # dicom = '\\static\\'+ str(results_img[3][2]) # show a CT Dicom slice
+    GT_GTVmask = '\\static\\'+ str(results_img[4][2]) # show ground truth GTV mask 
+    print(GT_GTVmask)
+
+    return render_template("GT_GTVmask.html", user_image = GT_GTVmask
+                           ,row_img = results_img
+                           ,p_id = p_id
+                           ,p_name = p_name
+                           )
+
+    return render_template('GT_GTVmask.html',error = error)
+
+@app.route('/PRED_GTVmask',  methods=['GET', 'POST'])
+def load_PRED_GTVmask():
+    error = None
+
+    # get current user's patientID and name
+    p_id = session.get('p_id', None)
+    print(p_id)
+    p_name = session.get('p_name', None)
+    print(p_name)
+    
+    # get the three images linked to patient in current session from database
+    if p_id != "":
+        query_img = """SELECT IMAGE.IMAGEID, IMAGE.NAME, IMAGE.FULLPATH FROM IMAGE 
+            INNER JOIN PATIENT_IMAGE ON IMAGE.IMAGEID=PATIENT_IMAGE.IMAGEID 
+            WHERE PATIENT_IMAGE.PATIENTID=%s"""%(p_id)
+        # query_dicom
+        
+        conn = psycopg2.connect(database=DATABASE, user=USER, password=PASSWORD,host=HOST,port=PORT)
+        cur = conn.cursor()
+        cur.execute(query_img)
+        results_img = cur.fetchall()
+        
+        
+    else:
+        results_img = []
+    
+    print(results_img); print(str(results_img[0][2])); print(str(results_img[1][2])); print(str(results_img[2][2]))
+    print(str(results_img[3][2])); print(str(results_img[4][2]))
+    # specify filename
+    
+    # ori_filename = '\\static\\'+ str(results_img[0][2]) # showing the original histopathological image
+    # seg_filename = '\\static\\'+ str(results_img[1][2]) # segmented histopathological image
+    # histogram_filename = '\\static\\'+ str(results_img[2][2]) # nuclei size distibution histogram 
+    # dicom = '\\static\\'+ str(results_img[3][2]) # show a CT Dicom slice
+    # GT_GTVmask = '\\static\\'+ str(results_img[4][2]) # show ground truth GTV mask 
+    PRED_GTVmask = '\\static\\'+ str(results_img[5][2]) # show Unet predicted GTV mask
+    print(PRED_GTVmask)
+
+    return render_template("PRED_GTVmask.html", user_image = PRED_GTVmask
+                           ,row_img = results_img
+                           ,p_id = p_id
+                           ,p_name = p_name
+                           )
+
+    return render_template('PRED_GTVmask.html',error = error)
+
+@app.route('/theend',  methods=['GET', 'POST'])
+def theend():
+    error = None
+    
+    return render_template('theend.html')
+
 
 # @app.route('/')
 # def index():
@@ -280,4 +420,3 @@ def load_cellinfo():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
